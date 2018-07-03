@@ -44,7 +44,7 @@
 \def \BTutantName{Markus Rothgänger}
 \def \BTutantEmail{mrothgaenger@techfak.uni-bielefeld.de}
 % HIER DIE VERSUCHSNUMMER ANPASSEN
-\def \Versuchsnummer{Versuch 5}
+\def \Versuchsnummer{Versuch 6}
 % HIER DIE GRUPPENNUMMER ANPASSEN
 \def \Gruppennummer{Gruppe 5}
 % HIER DEN TUTORNAMEN ANPASSEN
@@ -86,7 +86,7 @@
 
 % Konfiguration des Deckblatts
 \begin{titlepage}
-\title{\textbf{Digitalelektronisches Praktikum\\ Versuch 5}}
+\title{\textbf{Digitalelektronisches Praktikum\\ Versuch 6}}
 \author{\ATutantName \\ \emph{\ATutantEmail} \and \BTutantName\\ \emph{\BTutantEmail}}
 \date{\Gruppennummer \\[3ex] Tutor: \Tutorname \\[3ex] \today}
 \end{titlepage}
@@ -100,28 +100,43 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Ab hier Beginn des Laborberichts: %%%%%%%%%%%%%%%%%%%%%
-
+\section*{Theorie/Allgemeines}
+- Was ist ein FPGA?
+- Schritte von graphischem Aufbau zu Bitsream / Schaltung
 \section*{Versuchsaufbau}
+Die allgemeine Benutzung der Software Vivado wird hier nicht erläutert.
 \subsection*{Aufgabe}
-\subsection*{Erwartung}
+Es wurden insgesamt sechs Aufgaben bearbeitet. Alle arbeiteten mit den Komponenten auf dem Board.
+\begin{itemize}
+	\item 1. In der ersten Aufgabe sollten sechs Segmente einer Sieben-Segment-Anzeige mit Hilfe von Vier Schaltern angesteuert werden.
+	Dabei sollte der angezeigte Wert der Anzeige dem Binär kodierten Wert der Schalter entsprechen. Der Block zum Ansteuern der Sechs Segmente war vorgegeben. Die Funktionalität der Implementierung sollte (durch die Simulation mit der \textit{Testbench} und auf dem Board) verifiziert und die Aufgabe der \textit{Testbench} erklärt werden. Des weiteren sollte herausgearbeitet werden, welches Segment nicht angesteuert wird, sowie, welche Aufgabe das Ausgangssignal mit dem Code \textit{AN} besitzt.
+	\item 2. Im zweiten Teil war die Schaltung aus der ersten Aufgabe zu erweitern, so dass auch das siebte Segment angesteuert wird. Dazu sollte eine aufgestellte Schaltlogik mithilfe des Karnaugh-Plans minimiert werden. Diese minimierte Schaltung wurde in das Block Design eingebaut. Auch dieses Block Design wurde durch die Simulation sowie am Board verifiziert.
+	\item 3. Hier wurde das Erstellen eines \textit{IP-Core} (aus Zeitmangel) übersprungen. Es war herauszustellen, was bei dem Ansteuern aller vier Sieben-Segment-Anzeigen zu beachten ist. Diese Schaltung war zu skizzieren, zu implementieren und zu testen.
+	\item 4. In der vierten Aufgabe sollten die mit den Schaltern eingestellten Werte erst bei einem Knopfdruck auf die Anzeige übernommen werden. Dazu waren alle möglichen Einbaustellen für Speicherelemente aufzuzählen und gegeneinander abzuwägen.
+	Die Schaltung war zu implementieren und zu testen.
+	\item 5. Im fünften Teil war das Zurücksetzen der Anzeige auf den Wert \textit{0000} bei Knopfdruck (eines weiteren Knopfes) zu implementieren. Es sollte erklärt werden, wieso sowohl der Knopf zum Zurücksetzen, als auch der Knopf zum Speichern zu drücken war, um die Anzeige zurückzusetzen.
+	Eine Lösung dieses Problems war zu finden.
+	\textit{\item 6. übersprungen}
+	\item 7. Ein 16-Bit Zähler sollte erstellt werden, welcher bei einem Knopfdruck auf Null gesetzt werden konnte. Die Schaltung war zuerst mit zwei 8-Bit Addern zu skizzieren, dann zu realisieren und schließlich zu testen.
+\end{itemize}
 \subsection*{Aufbau}
-\begin{figure}[htb]
+\subsubsection*{Verwendete Bauteile}
+Basys 3 FPGA-Board, USB-Kabel, Computer mit Vivado Software.
+\subsubsection*{Block Design Bauteile}
+Hier eine Liste der Bauteile mit einer kurzen Erklärung der Funktionsweise
+\begin{itemize}
+	\item \textit{xlconstant:} Konstanter Wert dessen Bitweite eingestellt werden kann.
+	\item \textit{xlslice:} Herausschneiden von bestimmten Bits des Eingangsbitstroms.
+	\item \textit{xlconcat:} Hintereinanderfügen von zwei Bitströmen variabler Breite zu einem einzigen Bitstrom dessen Breite der Summe der Breiten der Eingangsbitströme entspricht.
+\end{itemize}
+\subsubsection*{Sechs-Segment-Anzeige}
+\begin{figure}[htb]    
     \centering
-    \begin{minipage}[t]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{NAND.pdf}
-        \caption{Aufbau des NAND-Gatters}
-        \label{aufbauNAND}
-    \end{minipage}% 
-    \hfill
-    \begin{minipage}[t]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{NOR.pdf}
-        \caption{Aufbau des NOR-Gatters}
-        \label{aufbauNOR}
-    \end{minipage}
+    \includegraphics[width=\linewidth]{versuch1Data/seven_segment_display1.pdf}
+    \caption{Block Design zum Ansteuern von Sechs der Sieben Segmente einer Anzeige}
+    \label{aufbauSechsSegment}        
 \end{figure}
-\subsection*{Verwendete Bauteile}
+Das Block Design zu dem ersten Aufbau war im wesentlichen Vorgegeben.
 \section*{Durchführung}. 
 \section*{Messergebnisse}
 \section*{Beobachtungen}
