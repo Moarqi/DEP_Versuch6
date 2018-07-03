@@ -119,7 +119,7 @@ Es wurden insgesamt sechs Aufgaben bearbeitet. Alle arbeiteten mit den Komponent
 	\textit{\item 6. übersprungen}
 	\item 7. Ein 16-Bit Zähler sollte erstellt werden, welcher bei einem Knopfdruck auf Null gesetzt werden konnte. Die Schaltung war zuerst mit zwei 8-Bit Addern zu skizzieren, dann zu realisieren und schließlich zu testen.
 \end{itemize}
-\subsection*{Aufbau}
+\subsection*{Aufbau und Erläuterung}
 \subsubsection*{Verwendete Bauteile}
 Basys 3 FPGA-Board, USB-Kabel, Computer mit Vivado Software.
 \subsubsection*{Block Design Bauteile}
@@ -136,7 +136,18 @@ Hier eine Liste der Bauteile mit einer kurzen Erklärung der Funktionsweise
     \caption{Block Design zum Ansteuern von Sechs der Sieben Segmente einer Anzeige}
     \label{aufbauSechsSegment}        
 \end{figure}
-Das Block Design zu dem ersten Aufbau war im wesentlichen Vorgegeben.
+Das Block Design zu dem ersten Aufbau war im wesentlichen Vorgegeben. Wie in \autoref{aufbauSechsSegment} zu sehen, wurde zuerst der Bitstrom aus dem Eingang der Schalter mit Hilfe des \textit{slice} Bausteins auf die unteren vier Bit verkleinert. Diese dienen dem aus den Aufgabendaten entnommenen Modul zum ansteuern der sechs Segmente als Eingang (in der Abbildung mit \textit{sw_to_6segment_dataf} bezeichnet). Der Ausgang des Moduls wurde mit einer ein Bit Konstante verknüpft und der sieben Bit breite Strom wurde an den Ausgang \textit{SEG} geleitet. Dieser steuert die Segmente direkt an.
+Zusätzlich sollte eine vier Bit breite Konstante mit dem Wert 1 an den Ausgang \textit{AN} angelegt werden. Die Bedeutung dieses Wertes wird im folgenden Erläutert.
+\subsubssubsection*{Test und Auswertung der Waveforms}
+Bei einer Simulation mit der initialen Konfiguration läuft die Testbench auf einen Fehler. Dieser besagt, dass der Wert an der Anode falsch gesetzt ist. Ein Blick in das Handbuch des Boards klärt auf, dass die Anode den an dem Ausgang \textit{SEG} anliegenden Wert auf die Anzeigen weitergibt, für die das Bit an der Anode Null ist. Ein Binärcode von 1110 bedeutet also, dass die letzte Ziffer aktiv ist, die anderen nicht.
+Ist der Wert der Konstante am Ausgang \textit{AN} also auf 14 (Wert des Binärcodes 1110) gesetzt, so läuft der Test ohne Fehler.
+Hieraus wird deutlich, dass die Testbench die Funktionsweise und die Vorraussetzungen für eine spezifische Schaltung verifiziert, ähnlich zu einem Unit-Test.
+\begin{figure}[htb]    
+    \centering
+    \includegraphics[width=\linewidth]{versuch1Data/waveform1.png}
+    \caption{Block Design zum Ansteuern von Sechs der Sieben Segmente einer Anzeige}
+    \label{aufbauSechsSegment}        
+\end{figure}
 \section*{Durchführung}. 
 \section*{Messergebnisse}
 \section*{Beobachtungen}
