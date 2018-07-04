@@ -37,7 +37,6 @@
 \usepackage{nameref}
 
 
-
 % HIER DIE NAMEN UND EMAIL ANPASSEN
 \def \ATutantName{Moritz Breipohl}
 \def \ATutantEmail{mbreipohl@techfak.uni-bielefeld.de}
@@ -120,35 +119,79 @@ Es wurden insgesamt sechs Aufgaben bearbeitet. Alle arbeiteten mit den Komponent
 	\item 7. Ein 16-Bit Zähler sollte erstellt werden, welcher bei einem Knopfdruck auf Null gesetzt werden konnte. Die Schaltung war zuerst mit zwei 8-Bit Addern zu skizzieren, dann zu realisieren und schließlich zu testen.
 \end{itemize}
 \subsection*{Aufbau und Erläuterung}
-\subsubsection*{Verwendete Bauteile}
+\subsection*{Verwendete Bauteile}
 Basys 3 FPGA-Board, USB-Kabel, Computer mit Vivado Software.
 \subsubsection*{Block Design Bauteile}
+Allgemein sind alle Eingägne linksbündig und alle Ausgänge rechtsbündig.
 Hier eine Liste der Bauteile mit einer kurzen Erklärung der Funktionsweise
-\begin{itemize}
-	\item \textit{xlconstant:} Konstanter Wert dessen Bitweite eingestellt werden kann.
-	\item \textit{xlslice:} Herausschneiden von bestimmten Bits des Eingangsbitstroms.
-	\item \textit{xlconcat:} Hintereinanderfügen von zwei Bitströmen variabler Breite zu einem einzigen Bitstrom dessen Breite der Summe der Breiten der Eingangsbitströme entspricht.
+\begin{itemize}	
+	\item \textit{Constnat:} Konstanter Wert dessen Bitweite eingestellt werden kann.
+	\item \textit{Slice:} Herausschneiden von bestimmten Bits des Eingangsbitstroms.
+	\item \textit{Concat:} Hintereinanderfügen von zwei Bitströmen variabler Breite zu einem einzigen Bitstrom dessen Breite der Summe der Breiten der Eingangsbitströme entspricht.
 \end{itemize}
-\subsubsection*{Sechs-Segment-Anzeige}
+\subsection*{Sechs-Segment-Anzeige}
 \begin{figure}[htb]    
     \centering
     \includegraphics[width=\linewidth]{versuch1Data/seven_segment_display1.pdf}
     \caption{Block Design zum Ansteuern von Sechs der Sieben Segmente einer Anzeige}
     \label{aufbauSechsSegment}        
 \end{figure}
-Das Block Design zu dem ersten Aufbau war im wesentlichen Vorgegeben. Wie in \autoref{aufbauSechsSegment} zu sehen, wurde zuerst der Bitstrom aus dem Eingang der Schalter mit Hilfe des \textit{slice} Bausteins auf die unteren vier Bit verkleinert. Diese dienen dem aus den Aufgabendaten entnommenen Modul zum ansteuern der sechs Segmente als Eingang (in der Abbildung mit \textit{sw_to_6segment_dataf} bezeichnet). Der Ausgang des Moduls wurde mit einer ein Bit Konstante verknüpft und der sieben Bit breite Strom wurde an den Ausgang \textit{SEG} geleitet. Dieser steuert die Segmente direkt an.
-Zusätzlich sollte eine vier Bit breite Konstante mit dem Wert 1 an den Ausgang \textit{AN} angelegt werden. Die Bedeutung dieses Wertes wird im folgenden Erläutert.
-\subsubssubsection*{Test und Auswertung der Waveforms}
-Bei einer Simulation mit der initialen Konfiguration läuft die Testbench auf einen Fehler. Dieser besagt, dass der Wert an der Anode falsch gesetzt ist. Ein Blick in das Handbuch des Boards klärt auf, dass die Anode den an dem Ausgang \textit{SEG} anliegenden Wert auf die Anzeigen weitergibt, für die das Bit an der Anode Null ist. Ein Binärcode von 1110 bedeutet also, dass die letzte Ziffer aktiv ist, die anderen nicht.
-Ist der Wert der Konstante am Ausgang \textit{AN} also auf 14 (Wert des Binärcodes 1110) gesetzt, so läuft der Test ohne Fehler.
+Das Block Design zu dem ersten Aufbau war im wesentlichen Vorgegeben. Wie in \autoref{aufbauSechsSegment} zu sehen, wurde zuerst der Bitstrom aus dem Eingang der Schalter mit Hilfe des \textit{slice} Bausteins auf die unteren vier Bit verkleinert. Diese dienen dem aus den Aufgabendaten entnommenen Modul zum ansteuern der sechs Segmente als Eingang (in der Abbildung mit \textit{bcdto6segment\_dataflow} bezeichnet). Der Ausgang des Moduls wurde mit einer ein Bit Konstante mit dem Wert $0$ verknüpft und der entstehende sieben Bit breite Strom wurde an den Ausgang \textit{SEG} geleitet. Dieser steuert die Segmente direkt an.
+Zusätzlich sollte eine vier Bit breite Konstante mit dem Wert $1$ an den Ausgang \textit{AN} angelegt werden. Die Bedeutung dieses Wertes wird im folgenden Erläutert.
+\subsubsection*{Test und Auswertung der Waveforms}
+Bei einer Simulation mit der initialen Konfiguration lief die Testbench auf einen Fehler. Dieser besagte, dass der Wert an der Anode falsch gesetzt sei. Ein Blick in das Handbuch (REFFEN!!!!!) des Boards klärte auf, dass die Anode den an dem Ausgang \textit{SEG} anliegenden Wert auf die Ziffern der Anzeige weitergibt, für die das Bit an der Anode Null ist. Ein Binärcode von 1110 bedeutet also, dass die letzte Ziffer aktiv ist, die anderen nicht.
+Wurde der Wert der Konstante am Ausgang \textit{AN} also auf 14 (Wert des Binärcodes 1110) gesetzt, so lief der Test ohne Fehler.
 Hieraus wird deutlich, dass die Testbench die Funktionsweise und die Vorraussetzungen für eine spezifische Schaltung verifiziert, ähnlich zu einem Unit-Test.
 \begin{figure}[htb]    
     \centering
     \includegraphics[width=\linewidth]{versuch1Data/waveform1.png}
     \caption{Block Design zum Ansteuern von Sechs der Sieben Segmente einer Anzeige}
-    \label{aufbauSechsSegment}        
+    \label{waveformSechsSegment}        
 \end{figure}
-\section*{Durchführung}. 
+Die Waveform-Anzeige in der Software bietet die Möglichkeit die Auswirkung von in der Testbench konfigurierten Eingangsbelegungen auf die Ausgänge zu analysieren. Somit kann das vollständige Verhalten der Schaltung verifiziert werden.
+Für diesen Versuch war also in der Testbench ein hochzählen mithilfe der letzten vier Bits des Eingangs der Schalter konfiguriert.
+Konkret wurde für diesen Versuch aus den Waveforms deutlich, dass das Element, welches von dem untersten Bit des Ausgangs angesteuert wird, nicht geschaltet wird. Dieses Bit hat immer den Wert 1 (durch die Konstante im Block Design), somit leuchtet die Anzeige nicht. In dem praktischen Test wurde deutlich, dass es sich um das mittlere Segment handelt.
+Beispielsweise ist in \autoref{waveformSechsSegment} zu erkennen, dass eine Null am Eingang (also der erste Abschnitt im Diagramm) in einer Ausgangsbelegung resultiert, indem alle bis auf das mittlere Element Null sind. Es wird also eine 0 als Ziffer dargestellt.
+\subsection*{Sieben-Segment-Anzeige}
+Zuerst wurde eine Logiktabelle (\autoref{logikSieben}) angelegt in welcher nur das siebte Element betrachtet wurde. Alle Eingangsbelegungen der vier Eingangsbits wurden hier berücksichtigt. Ein Übertrag in einen Karnaugh-Plan (\autoref{karnaugh}) und das Erstellen einer Disjunktiven Normalform durch Umkreisen der Einsen führt zu folgender Schaltformel:
+$$S_0 = \overline{x_3}\,\overline{x_2}\,\overline{x_1}\,\lor\,\overline{x_3}\,x_2\,x_1\,x_0\,\lor\,x_3\,x_2\,\overline{x_1}\,x_0$$
+\begin{table}[H]
+	\center
+	\begin{tabular}{c|c|c|c||c}
+	$x_3$ &  $x_2$ & $x_1$ & $x_0$ & Output	\\ \hline
+	0 & 0 & 0 & 0 & 1 \\ \hline	
+	0 & 0 & 0 & 1 & 1 \\ \hline
+	0 & 0 & 1 & 0 & 0 \\ \hline
+	0 & 0 & 1 & 1 & 0 \\ \hline
+	0 & 1 & 0 & 0 & 0 \\ \hline
+	0 & 1 & 0 & 1 & 0 \\ \hline
+	0 & 1 & 1 & 0 & 0 \\ \hline
+	0 & 1 & 1 & 1 & 1 \\ \hline
+	1 & 0 & 0 & 0 & 0 \\ \hline	
+	1 & 0 & 0 & 1 & 0 \\ \hline	
+	1 & 0 & 1 & 0 & 0 \\ \hline	
+	1 & 0 & 1 & 1 & 0 \\ \hline	
+	1 & 1 & 0 & 0 & 1 \\ \hline	
+	1 & 1 & 0 & 1 & 0 \\ \hline	
+	1 & 1 & 1 & 0 & 0 \\ \hline	
+	1 & 1 & 1 & 1 & 0 \\ \hline	
+	\end{tabular}
+	\caption{Logiktabelle zum mittleren Segment}
+	\label{logikSieben}
+\end{table}
+\begin{table}[H]
+	\center
+	\begin{tabular}{c||c|c|c|c}
+	$x_3 x_2 x_1 x_0$ 	& 00 & 01 & 11 & 10	\\ \hline \hline
+	00 & 1 & 1 & 0 & 0 \\ \hline
+	01 & 0 & 0 & 1 & 0 \\ \hline
+	11 & 1 & 0 & 0 & 0 \\ \hline
+	10 & 0 & 0 & 0 & 0 \\ \hline
+	\end{tabular}
+	\caption{Karnaugh-Plan zur Schaltung des mittleren Segments}
+	\label{karnaugh}
+\end{table}
+\section*{Durchführung}
 \section*{Messergebnisse}
 \section*{Beobachtungen}
 \section*{Auswertung}
