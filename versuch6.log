@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.7.4)  4 JUL 2018 14:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.7.4)  4 JUL 2018 23:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1623,13 +1623,13 @@ t>
 File: images/versuch1Data/seven_segment_display1.pdf Graphic file (type pdf)
 <use images/versuch1Data/seven_segment_display1.pdf>
 Package pdftex.def Info: images/versuch1Data/seven_segment_display1.pdf  used o
-n input line 135.
+n input line 139.
 (pdftex.def)             Requested size: 452.9679pt x 109.00175pt.
 <images/versuch1Data/waveform1.png, id=29, 1586.92876pt x 921.4425pt>
 File: images/versuch1Data/waveform1.png Graphic file (type png)
 <use images/versuch1Data/waveform1.png>
 Package pdftex.def Info: images/versuch1Data/waveform1.png  used on input line 
-147.
+151.
 (pdftex.def)             Requested size: 452.9679pt x 263.00752pt.
 
 
@@ -1639,13 +1639,13 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 155.
+(babel)             in language  on input line 159.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 155.
+(babel)             in language  on input line 159.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 155.
+(babel)             in language  on input line 159.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 155.
+(babel)             in language  on input line 159.
 [3.3.0.0.0.0.0.0.0.1 </home/markus/Documents/gitshit/DEP_Versuch6/images/versuc
 h1Data/seven_segment_display1.pdf>]
 
@@ -1655,15 +1655,103 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 193.
+(babel)             in language  on input line 197.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 193.
+(babel)             in language  on input line 197.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 193.
+(babel)             in language  on input line 197.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 193.
+(babel)             in language  on input line 197.
 [4.4 </home/markus/Documents/gitshit/DEP_Versuch6/images/versuch1Data/waveform1
-.png>] 
+.png>]
+<images/versuch2Data/seven_segment_display.pdf, id=62, 529.98pt x 271.0125pt>
+File: images/versuch2Data/seven_segment_display.pdf Graphic file (type pdf)
+<use images/versuch2Data/seven_segment_display.pdf>
+Package pdftex.def Info: images/versuch2Data/seven_segment_display.pdf  used on
+ input line 203.
+(pdftex.def)             Requested size: 452.9679pt x 231.63538pt.
+<images/versuch2Data/aufgabe2.png, id=63, 1577.895pt x 875.27pt>
+File: images/versuch2Data/aufgabe2.png Graphic file (type png)
+<use images/versuch2Data/aufgabe2.png>
+Package pdftex.def Info: images/versuch2Data/aufgabe2.png  used on input line 2
+09.
+(pdftex.def)             Requested size: 452.9679pt x 251.25754pt.
+<images/versuch3Data/hierarchical_display.pdf, id=65, 514.92375pt x 222.8325pt>
+
+File: images/versuch3Data/hierarchical_display.pdf Graphic file (type pdf)
+<use images/versuch3Data/hierarchical_display.pdf>
+Package pdftex.def Info: images/versuch3Data/hierarchical_display.pdf  used on 
+input line 222.
+(pdftex.def)             Requested size: 452.9679pt x 196.02519pt.
+<images/versuch3Data/hierarchical.png, id=66, 1606.0pt x 1003.75pt>
+File: images/versuch3Data/hierarchical.png Graphic file (type png)
+<use images/versuch3Data/hierarchical.png>
+Package pdftex.def Info: images/versuch3Data/hierarchical.png  used on input li
+ne 228.
+(pdftex.def)             Requested size: 452.9679pt x 283.10042pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 235.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 235.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 235.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 235.
+[5.5.0.0.0.0.0.0.0.1]
+<images/versuch4Data/hierarchical_display_trigger.pdf, id=77, 520.94624pt x 242
+.9075pt>
+File: images/versuch4Data/hierarchical_display_trigger.pdf Graphic file (type p
+df)
+<use images/versuch4Data/hierarchical_display_trigger.pdf>
+Package pdftex.def Info: images/versuch4Data/hierarchical_display_trigger.pdf  
+used on input line 247.
+(pdftex.def)             Requested size: 452.9679pt x 211.2129pt.
+<images/versuch4Data/hierarchical_trigger.png, id=78, 1588.93625pt x 988.69376p
+t>
+File: images/versuch4Data/hierarchical_trigger.png Graphic file (type png)
+<use images/versuch4Data/hierarchical_trigger.png>
+Package pdftex.def Info: images/versuch4Data/hierarchical_trigger.png  used on 
+input line 253.
+(pdftex.def)             Requested size: 452.9679pt x 281.85608pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 258.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 258.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 258.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 258.
+[6.6 </home/markus/Documents/gitshit/DEP_Versuch6/images/versuch2Data/seven_seg
+ment_display.pdf>]
+<images/versuch5Data/hierarchical_display_delete.pdf, id=104, 526.96875pt x 243
+.91125pt>
+File: images/versuch5Data/hierarchical_display_delete.pdf Graphic file (type pd
+f)
+<use images/versuch5Data/hierarchical_display_delete.pdf>
+Package pdftex.def Info: images/versuch5Data/hierarchical_display_delete.pdf  u
+sed on input line 264.
+(pdftex.def)             Requested size: 452.9679pt x 209.67026pt.
+<images/versuch5Data/hierarchicalDelete.png, id=105, 1590.94376pt x 983.675pt>
+File: images/versuch5Data/hierarchicalDelete.png Graphic file (type png)
+<use images/versuch5Data/hierarchicalDelete.png>
+Package pdftex.def Info: images/versuch5Data/hierarchicalDelete.png  used on in
+put line 270.
+(pdftex.def)             Requested size: 452.9679pt x 280.06511pt.
+ 
 AED: lastpage setting LastPage
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
@@ -1672,35 +1760,88 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 198.
+(babel)             in language  on input line 276.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 198.
+(babel)             in language  on input line 276.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 198.
+(babel)             in language  on input line 276.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 198.
-[5.5.0.0.0.0.0.0.0.1]
+(babel)             in language  on input line 276.
+[7.7.0.0.0.0.0.0.0.1 </home/markus/Documents/gitshit/DEP_Versuch6/images/versuc
+h2Data/aufgabe2.png>]
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 198.
+(babel)             in language  on input line 276.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 198.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 198.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 198.
- (/home/markus/Documents/gitshit/DEP_Versuch6/versuch6.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 198.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 198.
+(babel)             in language  on input line 276.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 276.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 276.
+[8.8 </home/markus/Documents/gitshit/DEP_Versuch6/images/versuch3Data/hierarchi
+cal_display.pdf> </home/markus/Documents/gitshit/DEP_Versuch6/images/versuch3Da
+ta/hierarchical.png>]
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 276.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 276.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 276.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 276.
+[9.9.0.0.0.0.0.0.0.1 </home/markus/Documents/gitshit/DEP_Versuch6/images/versuc
+h4Data/hierarchical_display_trigger.pdf> </home/markus/Documents/gitshit/DEP_Ve
+rsuch6/images/versuch4Data/hierarchical_trigger.png>]
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 276.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 276.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 276.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 276.
+[10.10 </home/markus/Documents/gitshit/DEP_Versuch6/images/versuch5Data/hierarc
+hical_display_delete.pdf> </home/markus/Documents/gitshit/DEP_Versuch6/images/v
+ersuch5Data/hierarchicalDelete.png>]
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 276.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 276.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 276.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 276.
+
+(/home/markus/Documents/gitshit/DEP_Versuch6/versuch6.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 276.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 276.
 Package rerunfilecheck Info: File `versuch6.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'versuch6.run.xml'.
 \openout1 = `versuch6.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 198.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 276.
  ) 
 Here is how much of TeX's memory you used:
- 28013 strings out of 494798
- 518893 string characters out of 6176801
- 960911 words of memory out of 5000000
- 30945 multiletter control sequences out of 15000+600000
+ 28082 strings out of 494798
+ 521154 string characters out of 6176801
+ 965554 words of memory out of 5000000
+ 30985 multiletter control sequences out of 15000+600000
  569253 words of font info for 102 fonts, out of 8000000 for 9000
  63 hyphenation exceptions out of 8191
  42i,11n,67p,10359b,1628s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1713,11 +1854,11 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
 ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmti12.pfb>
-Output written on /home/markus/Documents/gitshit/DEP_Versuch6/versuch6.pdf (5 p
-ages, 179609 bytes).
+Output written on /home/markus/Documents/gitshit/DEP_Versuch6/versuch6.pdf (10 
+pages, 539395 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
- 23 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 204 PDF objects out of 1000 (max. 8388607)
+ 134 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

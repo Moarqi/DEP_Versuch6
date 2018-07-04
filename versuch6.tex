@@ -109,7 +109,7 @@ Es wurden insgesamt sechs Aufgaben bearbeitet. Alle arbeiteten mit den Komponent
 \begin{itemize}
 	\item 1. In der ersten Aufgabe sollten sechs Segmente einer Sieben-Segment-Anzeige mit Hilfe von Vier Schaltern angesteuert werden.
 	Dabei sollte der angezeigte Wert der Anzeige dem Binär kodierten Wert der Schalter entsprechen. Der Block zum Ansteuern der Sechs Segmente war vorgegeben. Die Funktionalität der Implementierung sollte (durch die Simulation mit der \textit{Testbench} und auf dem Board) verifiziert und die Aufgabe der \textit{Testbench} erklärt werden. Des weiteren sollte herausgearbeitet werden, welches Segment nicht angesteuert wird, sowie, welche Aufgabe das Ausgangssignal mit dem Code \textit{AN} besitzt.
-	\item 2. Im zweiten Teil war die Schaltung aus der ersten Aufgabe zu erweitern, so dass auch das siebte Segment angesteuert wird. Dazu sollte eine aufgestellte Schaltlogik mithilfe des Karnaugh-Plans minimiert werden. Diese minimierte Schaltung wurde in das Block Design eingebaut. Auch dieses Block Design wurde durch die Simulation sowie am Board verifiziert.
+	\item 2. Im zweiten Teil war die Schaltung aus der ersten Aufgabe so zu erweitern, so dass auch das siebte Segment angesteuert wird. Dazu sollte eine aufgestellte Schaltlogik mithilfe des Karnaugh-Plans minimiert werden. Diese minimierte Schaltung wurde in das Block Design eingebaut. Auch dieses Block Design wurde durch die Simulation sowie am Board verifiziert.
 	\item 3. Hier wurde das Erstellen eines \textit{IP-Core} (aus Zeitmangel) übersprungen. Es war herauszustellen, was bei dem Ansteuern aller vier Sieben-Segment-Anzeigen zu beachten ist. Diese Schaltung war zu skizzieren, zu implementieren und zu testen.
 	\item 4. In der vierten Aufgabe sollten die mit den Schaltern eingestellten Werte erst bei einem Knopfdruck auf die Anzeige übernommen werden. Dazu waren alle möglichen Einbaustellen für Speicherelemente aufzuzählen und gegeneinander abzuwägen.
 	Die Schaltung war zu implementieren und zu testen.
@@ -128,6 +128,10 @@ Hier eine Liste der Bauteile mit einer kurzen Erklärung der Funktionsweise
 	\item \textit{Constnat:} Konstanter Wert dessen Bitweite eingestellt werden kann.
 	\item \textit{Slice:} Herausschneiden von bestimmten Bits des Eingangsbitstroms.
 	\item \textit{Concat:} Hintereinanderfügen von zwei Bitströmen variabler Breite zu einem einzigen Bitstrom dessen Breite der Summe der Breiten der Eingangsbitströme entspricht.
+	\item \textit{and\_4:} AND-Gatter mit vier Eingängen.
+	\item \textit{and\_3:} AND-Gatter mit drei Eingängen.
+	\item \textit{or\_3:} OR-Gatter mit drei Eingängen.
+	\item \textit{Utility Vector Logic:} Mehrzweck-Baustein; wurde in den Designs nur als Negator benutzt.
 \end{itemize}
 \subsection*{Sechs-Segment-Anzeige}
 \begin{figure}[htb]    
@@ -145,7 +149,7 @@ Hieraus wird deutlich, dass die Testbench die Funktionsweise und die Vorraussetz
 \begin{figure}[htb]    
     \centering
     \includegraphics[width=\linewidth]{versuch1Data/waveform1.png}
-    \caption{Block Design zum Ansteuern von Sechs der Sieben Segmente einer Anzeige}
+    \caption{Screenshot des Waveforms der Testbench zur Sechs-Segment Anzeige}
     \label{waveformSechsSegment}        
 \end{figure}
 Die Waveform-Anzeige in der Software bietet die Möglichkeit die Auswirkung von in der Testbench konfigurierten Eingangsbelegungen auf die Ausgänge zu analysieren. Somit kann das vollständige Verhalten der Schaltung verifiziert werden.
@@ -191,8 +195,82 @@ $$S_0 = \overline{x_3}\,\overline{x_2}\,\overline{x_1}\,\lor\,\overline{x_3}\,x_
 	\caption{Karnaugh-Plan zur Schaltung des mittleren Segments}
 	\label{karnaugh}
 \end{table}
-\section*{Durchführung}
-\section*{Messergebnisse}
-\section*{Beobachtungen}
-\section*{Auswertung}
+Die Schaltfunktion wurde also mit AND- und OR-Gattern in das Block-Design eingefügt.
+Dabei wurden zuerst alle unteren vier Bits des Eingangs isoliert und negiert. Diese Bits dienten dann als Eingang für die Gatter. Schließlich wurde der Ausgang der Schaltung mit dem Ausgang des Steuerungsmoduls der sechs Segmente konkateniert.
+Daraus resultierte das Design aus \autoref{aufbauSiebenSegment}.
+\begin{figure}[htb]    
+    \centering
+    \includegraphics[width=\linewidth]{versuch2Data/seven_segment_display.pdf}
+    \caption{Block Design zum Ansteuern von der vollen Sieben-Segment-Anzeige}
+    \label{aufbauSiebenSegment}        
+\end{figure}
+\begin{figure}[htb]    
+    \centering
+    \includegraphics[width=\linewidth]{versuch2Data/aufgabe2.png}
+    \caption{Screenshot des Waveforms der Testbench zur Sieben-Segment Anzeige}
+    \label{waveformSiebenSegment}        
+\end{figure}
+Die Testbench lief ohne Fehler und die resultierenden Waveforms (\autoref{aufbauSiebenSegment}) zeigten, dass nun auch das Signal des untersten Ausgangsbit bei Variation der Eingänge verändert wurde. Ein praktischer Test lieferte das gewünschte Ergebnis.
+\subsection*{Hierarchischer Entwurf}
+Problem bei einem Ansteurn von allen Ziffern auf dem Board ist, dass es nur einen Eingangskanal für alle vier Anzeigen gibt. Hier wird der Anodeneingang wichtig.
+
+Idee war, dass jede der vier Anzeigen nacheinander zum leuchten gebracht werden.
+Also wird zuerst der Wert der unteren vier Bit auf die letzte Ziffer übertragen, dann die nächsthöheren Bit auf die zweite Ziffer usw. Das muss nur sehr schnell Geschehen, so dass das menschliche Auge ein konstantes Leuchten wahrnimmt. Hier kommt ein Clockeingang ins Spiel.
+
+\begin{figure}[htb]    
+    \centering
+    \includegraphics[width=\linewidth]{versuch3Data/hierarchical_display.pdf}
+    \caption{Block Design zum Ansteuern aller vier Ziffern}
+    \label{aufbauHierarchie}        
+\end{figure}
+\begin{figure}[htb]    
+    \centering
+    \includegraphics[width=\linewidth]{versuch3Data/hierarchical.png}
+    \caption{Waveforms der Testbench beim Ansteuern aller vier Ziffern}
+    \label{waveformHierarchie}        
+\end{figure}
+
+In diesem Aufbau (\autoref{aufbauHierarchie}) wurde das Modul \textit{sw\_to\_7segment\_dataf} im Design verwendet. Die Funktion ist diejenige, die in der zweiten Aufgabe erreicht wurde, allerdings in einem Baustein vereint (das Erstellen dieses Bausteins wäre der übersprungene Teil der Aufgabe gewesen). Es wurde also das Eingangssignal der Schalter zuerst zugeschnitten, sodass jeweils vier Bit in ein Modul zur Ansteuerung einer Anzeige geleitet wurden. Das rotieren durch die Anode und den entsprechenden Eingang übernimmt ein ebenfalls vorgegebener Baustein mit dem Namen \textit{seven\_segment\_ctrl}. Dieser hat neben den Vier sieben Bit breiten Eingängen ein Eingang mit dem der Takt zum Umschalten bestimmt wird. Hier wurde ein neuer Eingang dem Design hinzugefügt, welcher einen Takt (Clock) mit einer Frequenz von 100 MHz erzeugte.
+Die Testbench lief ohne Fehler durch (es musste eventuell der Test manuell gestartet werden, die Waveforms sind in \autoref{waveformHierarchie}) und auch das Ergebnis auf der Hardware war wie erwartet. Es war kein flackern zu sehen und mit den obersten vier Bit konnte die erste Ziffer, mit den niedrigsten vier Bit die letzte Ziffer angesteuert werden. Eine Verifizierung der Funktion war hier erstmals nicht nur anhand der Waveforms möglich. Diese zeigen nur den Ausgang zu den Segmenten sowie die Belegung der Schalter. Dennoch ist anhand der Waveforms die korrekte Belegung der Anode zu erkennen. An der Anode ist immer nur ein Bit nach dem anderen aktiv (also Null).
+
+\subsection*{Anzeige bei Tastendruck übernehmen}
+Um diese Aufgabe zu realisieren, muss die aktuelle Belegung der Anzeige gespeichert werden. Es wurde ein beliebig breites Speicherregister (\textit{register\_gen\_bit\_enable}) mit Speicherung auf steigender Taktflanke (am \textit{Enable} Eingang) bereitgestellt. Hier gibt es mehrere Möglichkeiten zur Platzierung des Registers.
+\begin{itemize}
+	\item 1. Vor dem Aufteilen des Eingagnssignals. Hier ist der Vorteil, dass nur ein einziges 16-Bit Register benötigt wird.
+	\item 2. Nach dem Aufteilen. Die Speicherung der Werte jeder einzelnen Ziffer ist so unabhängig möglich.
+	\item 3. Nach den Logikbausteinen zum Schalten der sieben Segmente. Ähnlich zu 2., das Register ist jedoch sieben statt vier Bit breit.
+\end{itemize}
+Ein Speichern von Daten nach dem Controller Baustein ist nicht Sinnvoll, da der Takt das Signal ständig verändert bzw. je nach Speicherzeitpunkt die Werte einer anderen Ziffer gespeichert würden.
+Am sinnvollsten erschien uns zu diesem Zeitpunkt eine Speicherung der 16-Bit Rohdaten, da die Anpassung am geringsten war. Als Eingangssignal um das Register zu aktivieren nutzten wir den Knopf auf dem Board mit der Bezeichnung \textit{BTN\_C}.
+\begin{figure}[htb]    
+    \centering
+    \includegraphics[width=\linewidth]{versuch4Data/hierarchical_display_trigger.pdf}
+    \caption{Block Design mit Speicherregister}
+    \label{aufbauTrigger}        
+\end{figure}
+\begin{figure}[htb]    
+    \centering
+    \includegraphics[width=\linewidth]{versuch4Data/hierarchical_trigger.png}
+    \caption{Waveforms zur Speicherung auf Tastendruck}
+    \label{waveformTrigger}        
+\end{figure}
+Wie im Aufbau (\autoref{aufbauTrigger}) und den Waveforms der entsprechenden Testbench (\autoref{waveformTrigger}) zu sehen, werden die an den Schaltern des Boards eingestellten Werte erst bei der nächsten Taktflanke nach drücken des Knopfes \textit{BTN\_C} (im Waveform \textit{trigger}) auf den Ausgang zu den Segmenten übernommen.
+\subsection*{Zurücksetzen der Anzeige}
+Hier wurde deutlich, dass die Entscheidung, das Register an den Anfang des Datenstroms zu platzieren, für diese Aufgabe nicht optimal war. Problem war, dass uns vier Bit Multiplexer zur Verfügung standen, wir zur Lösung der Aufgabe in dieser Konfiguration allerdings zwischen zwei 16-Bit Daten wechseln müssten. Daher wurde die Schaltung so umgebaut, dass vier Bit Register den Zustand der Anzeige nach dem Aufteilen in die vier Bit Blöcke Speichern. So konnten wir dem Design pro Ziffer einen Multiplexer hinzufügen, welcher beim Drücken von \textit{BTN\_D} den Eingang des Registers mit einem vier Bit breiten Nullvektor belegte. Sobald der Knopf losgelassen wurde, wurde wieder die Belegung aus den Schaltern benutzt. 
+Der Aufbau des Beschriebenen ist in \autoref{aufbauDelete} dargestellt. Die Testbench wurde ohne Fehler durchlaufen und die resultierenden Waveforms sind in \autoref{waveformDelete} zu sehen.
+Um die Anzeige wirklich Zurückzusetzen, musste der Null-Wert in das Register gespeichert werden. Daher war ein gleichzeitiges Drücken von \textit{BTN\_D} (zum wählen des Nullvektors) und \textit{BTN\_C} (zum speichern des Nullvektors im Register) notwendig. Eine Lösung dieses Problems hätte realisiert werden können, wenn der Knopf zum Wählen des Nullvektors gleichzeitig die Register aktiviert. 
+\begin{figure}[htb]    
+    \centering
+    \includegraphics[width=\linewidth]{versuch5Data/hierarchical_display_delete.pdf}
+    \caption{Block Design zum Zurücksetzen der Anzeige}
+    \label{aufbauDelete}        
+\end{figure}
+\begin{figure}[htb]    
+    \centering
+    \includegraphics[width=\linewidth]{versuch5Data/hierarchicalDelete.png}
+    \caption{Waveforms zum Zurücksetzen der Anzeige}
+    \label{waveformDelete}        
+\end{figure}
+
+\section*{Fazit}
 \end{document}
