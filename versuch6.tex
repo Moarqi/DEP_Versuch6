@@ -157,7 +157,7 @@ Das Blockdesign zu dem ersten Aufbau war im wesentlichen vorgegeben. Wie in \aut
 Zusätzlich sollte eine vier Bit breite Konstante mit dem Wert $1$ an den Ausgang \textit{AN} angelegt werden. Die Bedeutung dieses Wertes wird im folgenden Erläutert.
 
 \subsubsection*{Test und Auswertung der Waveforms}
-Bei einer Simulation mit der initialen Konfiguration stieß die Testbench auf einen Fehler. Dieser besagte, dass der Wert an der Anode falsch gesetzt sei. Ein Blick in das Handbuch ( TODO : REFFEN!!!!!) des Boards klärte auf, dass die Anode den an dem Ausgang \textit{SEG} anliegenden Wert auf die Ziffern der Anzeige weitergibt, für die das Bit an der Anode Null ist. Ein Binärcode von 1110 bedeutet also, dass die letzte Ziffer aktiv ist, die anderen nicht.
+Bei einer Simulation mit der initialen Konfiguration stieß die Testbench auf einen Fehler. Dieser besagte, dass der Wert an der Anode falsch gesetzt sei. Ein Blick in das Handbuch$^{[1]}$ des Boards klärte auf, dass die Anode den an dem Ausgang \textit{SEG} anliegenden Wert auf die Ziffern der Anzeige weitergibt, für die das Bit an der Anode Null ist. Ein Binärcode von 1110 bedeutet also, dass die letzte Ziffer aktiv ist, die anderen nicht.
 Wurde der Wert der Konstante am Ausgang \textit{AN} also auf 14 (Wert des Binärcodes 1110) gesetzt, so lief der Test ohne Fehler.
 Hieraus wird deutlich, dass die Testbench die Funktionsweise und die Vorraussetzungen für eine spezifische Schaltung verifiziert, ähnlich zu einem Unit-Test.
 \begin{figure}[H]    
@@ -314,7 +314,7 @@ Zu beachten ist, dass das Taktsignal an dem Register durch den vorgegebenen \tex
 Hinter dem Register hängt die bereits zuvor verwendete Schaltung zum decodieren und darstellen auf dem Sieben-Segment-Display des Boards.
 \newline
 Zunächst hatten wir das Problem, dass unser Zähler immer 2 addierte und nicht 1. Nach etwas Suche klärte sich das Problem aber: Die Konstante \textit{xlconstant\_carry\_0} war versehentlich mit dem Wert 1 statt 0 belegt.
-Nachdem das Problem behoben war, lief die Testbench einwandfrei und auch auf dem Board konnte die Schaltund verifiziert werden. Bei Druck des Knopfes \textit{BTN\_D} wurde der Zähler auf 0 zurückgesetzt.
+Nachdem das Problem behoben war, lief die Testbench einwandfrei und auch auf dem Board konnte die Schaltung verifiziert werden. Bei Druck des Knopfes \textit{BTN\_D} wurde der Zähler auf 0 zurückgesetzt.
 
 
 \begin{figure}[H]    
@@ -332,5 +332,9 @@ Nachdem das Problem behoben war, lief die Testbench einwandfrei und auch auf dem
 
 \section*{Fazit}
 FPGAs sind äußert vielseitige Werkzeuge, mit denen man kleinere Spielereien bauen kann, aber auch professionell arbeiten kann. Mithilfe von Tools wie Vivado kann man auch ohne großes Verständnis der zugrunde liegenden HDL bereits Projekte mit den FPGAs realisieren. Interessant ist dabei die andere Denkweise als beim Programmieren: Man muss sich Gedanken um die einzelnen Signale machen und wie diese interpretiert werden und wie man diese verknüpft, um bestimmte Schaltungen zu verwirklichen.
+
+\section*{Literaturverzeichnis}
+[1] Handbuch Basys 3:
+\url{https://reference.digilentinc.com/_media/reference/programmable-logic/basys-3/basys3_rm.pdf}     05.07.2018 13:55
 
 \end{document}
