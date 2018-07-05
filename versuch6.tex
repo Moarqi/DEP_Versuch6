@@ -102,6 +102,17 @@
 \section*{Theorie/Allgemeines}
 - Was ist ein FPGA?
 - Schritte von graphischem Aufbau zu Bitsream / Schaltung
+
+\subsection*{Was ist ein FPGA}
+FPGA steht für "Field Programmable Gate Array", also ein Chip, auf welchem mehrere Logikblöcke liegen, welche verschiedene Funktionalitäten wie zum Beispiel AND oder OR Gattern anbieten. Das besondere ist jedoch, dass diese zunächst nicht miteinander verbunden sind. Mithilfe einer HDL (Hardware Description Language) kann man beschreiben, wie diese Bauteile miteinander verbunden sein sollen, um bestimmte Schaltungen zu realisieren. Das heißt, dass man im Gegensatz zu einer CPU nicht bestimmte Instruktionen programmiert, welche ausgeführt werden sollen, sondern die eigentliche Schaltung und Verbindung auf kleinstem Raum.
+
+Dies wird häufig fürs Prototyping von Schaltungen und neuen Chips eingesetzt, aber auch für hochspezialisierte Schaltungen wie Netzwerkschnittstellen. Ein anderes Anwendungsgebiet ist bei Produktionen in sehr kleiner Serie, die zwar einen bestimmte Chip benötigen, bei denen es sich aber nicht lohnt, extra einen speziellen Chip zu designen, testen und zu bestellen.
+
+\subsection*{Wie arbeitet man mit einem FPGA?}
+Wir haben hier mit der Software Vivado gearbeitet, einem Tool, mit dem man grafisch das logische Layout des Boards festlegen kann. Da es bereits vordefinierte Blöcke gibt, kann man diese per Drag\&Drop platzieren und deren Ein- und Ausgänge mit anderen Blöcken verbinden. Es gibt auch Komponenten wie Hardware- Ein- und Ausgänge, so dass man den Chip auch mit anderen Bauteilen kommunizieren kann.
+\
+Wenn man fertig ist mit dem Aufbau, muss man das ganze kompilieren. Der Computer überprüft zunächst, ob die Verbindungen, die man angegeben hat überhaupt gültig sind (z.B. dass man nicht mehrere Ausgänge an einen Eingang anschließt, ohne einen Multiplexer davorzuschalten). Im weiteren Verlauf versucht der Computer, die optimale Verbindung der Logikblöcke auf dem Chip zu ermitteln, welche dann die gewünschte Funktionalität liefern. Das Resultat ist ein sogenannter Bit-Stream. Diesen kann man dann auf das FPGA laden.
+
 \section*{Versuchsaufbau}
 Die allgemeine Benutzung der Software Vivado wird hier nicht erläutert.
 \subsection*{Aufgabe}
@@ -320,4 +331,6 @@ Nachdem das Problem behoben war, lief die Testbench einwandfrei und auch auf dem
 \end{figure}
 
 \section*{Fazit}
+FPGAs sind äußert vielseitige Werkzeuge, mit denen man kleinere Spielereien bauen kann, aber auch professionell arbeiten kann. Mithilfe von Tools wie Vivado kann man auch ohne großes Verständnis der zugrunde liegenden HDL bereits Projekte mit den FPGAs realisieren. Interessant ist dabei die andere Denkweise als beim Programmieren: Man muss sich Gedanken um die einzelnen Signale machen und wie diese interpretiert werden und wie man diese verknüpft, um bestimmte Schaltungen zu verwirklichen.
+
 \end{document}
