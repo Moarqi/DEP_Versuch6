@@ -99,19 +99,16 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Ab hier Beginn des Laborberichts: %%%%%%%%%%%%%%%%%%%%%
-\section*{Theorie/Allgemeines}
-- Was ist ein FPGA?
-- Schritte von graphischem Aufbau zu Bitsream / Schaltung
-
+\section*{Theorie/Allgemeines$^{[2]}$}
 \subsection*{Was ist ein FPGA}
-FPGA steht für "Field Programmable Gate Array", also ein Chip, auf welchem mehrere Logikblöcke liegen, welche verschiedene Funktionalitäten wie zum Beispiel AND oder OR Gattern anbieten. Das besondere ist jedoch, dass diese zunächst nicht miteinander verbunden sind. Mithilfe einer HDL (Hardware Description Language) kann man beschreiben, wie diese Bauteile miteinander verbunden sein sollen, um bestimmte Schaltungen zu realisieren. Das heißt, dass man im Gegensatz zu einer CPU nicht bestimmte Instruktionen programmiert, welche ausgeführt werden sollen, sondern die eigentliche Schaltung und Verbindung auf kleinstem Raum.
+FPGA steht für "Field Programmable Gate Array", also ein Chip, auf welchem mehrere Logikblöcke liegen, welche verschiedene Funktionalitäten wie zum Beispiel AND oder OR Gattern anbieten. Das besondere ist jedoch, dass diese zunächst nicht miteinander verbunden sind. Mithilfe einer HDL (Hardware Description Language) kann man beschreiben, wie diese Bauteile miteinander verbunden sein sollen, um bestimmte Schaltungen zu realisieren. Das heißt, dass im Gegensatz zu einer CPU nicht auszuführende Instruktionen programmiert werden, sondern die eigentliche Schaltung und Verbindung auf kleinstem Raum.
 
-Dies wird häufig fürs Prototyping von Schaltungen und neuen Chips eingesetzt, aber auch für hochspezialisierte Schaltungen wie Netzwerkschnittstellen. Ein anderes Anwendungsgebiet ist bei Produktionen in sehr kleiner Serie, die zwar einen bestimmte Chip benötigen, bei denen es sich aber nicht lohnt, extra einen speziellen Chip zu designen, testen und zu bestellen.
+Dies wird häufig für das Prototyping von Schaltungen und neuen Chips eingesetzt, aber auch für hochspezialisierte Schaltungen wie Netzwerkschnittstellen. Ein anderes Anwendungsgebiet ist die Produktion in sehr kleiner Serie, die zwar einen bestimmte Chip benötigen, bei denen es sich aber nicht lohnt, extra einen speziellen Chip zu designen, zu testen und zu bestellen.
 
 \subsection*{Wie arbeitet man mit einem FPGA?}
-Wir haben hier mit der Software Vivado gearbeitet, einem Tool, mit dem man grafisch das logische Layout des Boards festlegen kann. Da es bereits vordefinierte Blöcke gibt, kann man diese per Drag\&Drop platzieren und deren Ein- und Ausgänge mit anderen Blöcken verbinden. Es gibt auch Komponenten wie Hardware- Ein- und Ausgänge, so dass man den Chip auch mit anderen Bauteilen kommunizieren kann.
+Es wurde mit der Software Vivado gearbeitet, einem Tool, mit dem man grafisch das logische Layout des Boards festlegen kann. Da es bereits vordefinierte Blöcke gibt, kann man diese per Drag\&Drop platzieren und deren Ein- und Ausgänge mit anderen Blöcken verbinden. Es gibt auch Komponenten wie Hardware- Ein- und Ausgänge, so dass der Chip auch mit anderen Bauteilen kommunizieren kann.
 \
-Wenn man fertig ist mit dem Aufbau, muss man das ganze kompilieren. Der Computer überprüft zunächst, ob die Verbindungen, die man angegeben hat überhaupt gültig sind (z.B. dass man nicht mehrere Ausgänge an einen Eingang anschließt, ohne einen Multiplexer davorzuschalten). Im weiteren Verlauf versucht der Computer, die optimale Verbindung der Logikblöcke auf dem Chip zu ermitteln, welche dann die gewünschte Funktionalität liefern. Das Resultat ist ein sogenannter Bit-Stream. Diesen kann man dann auf das FPGA laden.
+Wenn das Design fertiggestellt ist, muss dieses kompiliert werden. Der Computer überprüft zunächst, ob die Verbindungen, die angegeben wurden gültig sind (z.B. dass nicht mehrere Ausgänge an einen Eingang angeschlossen werden, ohne einen Multiplexer davorzuschalten). Im weiteren Verlauf versucht der Computer, die optimale Verbindung der Logikblöcke auf dem Chip zu ermitteln, welche dann die gewünschte Funktionalität liefern. Das Resultat ist ein sogenannter Bit-Stream. Dieser kann auf das FPGA geladen werden und die Funktion ist praktisch gegeben.
 
 \section*{Versuchsaufbau}
 Die allgemeine Benutzung der Software Vivado wird hier nicht erläutert.
@@ -296,25 +293,25 @@ Um die Anzeige wirklich Zurückzusetzen, musste der Null-Wert in das Register ge
 \newpage
 \subsection*{16-Bit Zähler}
 Um 16 Bit hochzählen zu können, wurden Addiererbausteine benötigt.
-Vorgegeben waren \textit{add\_8bit\_v1\_0}, welche nur 8 Bit addieren können. 
-Diese besitzen 3 Eingänge und zwei Ausgänge: zwei jeweils 8 Bit breite Inputs, die aufeinander addiert werden sollen, so wie ein Carry-Eingang, welcher 1 Bit groß ist und auf das niederwertigste Bit addiert wird; zudem einen 8 Bit breiten Output, welcher das Ergebnis der Addition bereitstellt und einen 1 Bit großen Carry-Ausgang, welcher eine 1 liefert, wenn die Addition ein Ergebnis größer als 8 Bit liefert.
+Vorgegeben waren \textit{add\_8bit\_v1\_0}, welche nur acht Bit addieren können. 
+Diese besitzen drei Eingänge und zwei Ausgänge: zwei jeweils acht Bit breite Inputs, die aufeinander addiert werden sollen, so wie ein Carry-Eingang, welcher ein Bit groß ist und auf das niederwertigste Bit addiert wird. Zudem einen acht Bit breiten Output, welcher das Ergebnis der Addition bereitstellt und einen ein Bit breiten Carry-Ausgang, welcher eine Eins liefert, wenn die Addition ein Ergebnis größer als acht Bit liefert.
 \newline
-Um daraus einen 16 Bit breiten Addierer zu basteln brauchten wir zwei dieser Bausteine, einer für die unteren 8 Bit und einer für die höheren 8 Bit.
-Um den Überlauf der unteren 8 Bit zu zählen, wurde der Carry-Ausgang des ersten Addierers mit dem Carry-Eingang des zweiten Addierers verbunden.
-Da hier in jedem Schritt eine 1 addiert werden sollte, wurde der erste Eingang des ersten Addierers eine Konstante mit 8 Bit Breite und Wert 1 verbunden.
+Um daraus einen 16 Bit breiten Addierer zu basteln brauchten wir zwei dieser Bausteine. Einen für die unteren 8 Bit und einen für die höheren acht Bit.
+Um den Überlauf der unteren acht Bit zu zählen, wurde der Carry-Ausgang des ersten Addierers mit dem Carry-Eingang des zweiten Addierers verbunden.
+Da hier in jedem Schritt eine Eins addiert werden sollte, wurde der erste Eingang des ersten Addierers eine Konstante mit acht Bit Breite und Wert Eins verbunden.
 Der andere Eingang bezog die unteren 8 Bit des Register, aufgespalten durch einen Slice-Baustein.
 \newline
-Für die höheren 8 Bit wurden die höherwertigen 8 Bit des Registers, wieder durch einen Splicer bezogen, sowie eine Konstante, 8 Bit breite 0 angeschlossen.
+Für den Adder der höheren acht Bit wurden die höherwertigen acht Bit am Ausgang des Registers, wieder durch einen Slicer bezogen, sowie eine acht Bit breite Konstante mit dem Wert Null angeschlossen.
 Um hier hochzählen zu können, wurde der Carry-Ausgang des anderen Addierers mit dem Carry-Eingang dieses Addierers verbunden.
-Dies resultiert darin, dass wenn die niederwertigen 8-Bit ihren Speicherbereich überschreiten, die höherwertigen 8 Bit einmal hochzählen.
+Dies resultiert darin, dass wenn die niederwertigen acht Bit ihren Speicherbereich überschreiten, die höherwertigen acht Bit einmal hochzählen.
 \newline
-Die Zwischenergebnisse wurden in dem bereits bekannten Register gespeichert. Dieses hat bei einem Taktsignal auf dem Eingang \textit{CLK} den Ausgang mit den Werten am Input überschrieben. Somit liegt am Eingang des Registers immer der bereits nächste, um 1 erhöhte Wert, wird aber nur bei einem CLK-Signal durgeschaltet.
+Die Zwischenergebnisse wurden in dem bereits bekannten Register gespeichert. Dieses hat bei einem Taktsignal auf dem Eingang \textit{CLK} den Ausgang mit den Werten am Input überschrieben. Somit liegt am Eingang des Registers immer der bereits nächste, um 1 erhöhte Wert, wird aber nur bei einem CLK-Signal gespeichert.
 Zu beachten ist, dass das Taktsignal an dem Register durch den vorgegebenen \textit{frequency\_divider\_v1\_0} reduziert wurde, da ein Zähler, welcher mit 100 MHz hochzählt, nicht für das menschliche Auge sichtbar ist.
 \newline
 Hinter dem Register hängt die bereits zuvor verwendete Schaltung zum decodieren und darstellen auf dem Sieben-Segment-Display des Boards.
 \newline
-Zunächst hatten wir das Problem, dass unser Zähler immer 2 addierte und nicht 1. Nach etwas Suche klärte sich das Problem aber: Die Konstante \textit{xlconstant\_carry\_0} war versehentlich mit dem Wert 1 statt 0 belegt.
-Nachdem das Problem behoben war, lief die Testbench einwandfrei und auch auf dem Board konnte die Schaltung verifiziert werden. Bei Druck des Knopfes \textit{BTN\_D} wurde der Zähler auf 0 zurückgesetzt.
+Zunächst lag das Problem vor, dass der Zähler immer zwei addierte und nicht eins. Nach etwas Suche klärte sich das Problem aber: Die Konstante \textit{xlconstant\_carry\_0} war versehentlich mit dem Wert Eins statt Null belegt.
+Nachdem das Problem behoben war, lief die Testbench einwandfrei und auch auf dem Board konnte die Schaltung verifiziert werden. Bei Druck des Knopfes \textit{BTN\_D} wurde der Zähler auf Null zurückgesetzt.
 
 
 \begin{figure}[H]    
@@ -334,7 +331,10 @@ Nachdem das Problem behoben war, lief die Testbench einwandfrei und auch auf dem
 FPGAs sind äußert vielseitige Werkzeuge, mit denen man kleinere Spielereien bauen kann, aber auch professionell arbeiten kann. Mithilfe von Tools wie Vivado kann man auch ohne großes Verständnis der zugrunde liegenden HDL bereits Projekte mit den FPGAs realisieren. Interessant ist dabei die andere Denkweise als beim Programmieren: Man muss sich Gedanken um die einzelnen Signale machen und wie diese interpretiert werden und wie man diese verknüpft, um bestimmte Schaltungen zu verwirklichen.
 
 \section*{Literaturverzeichnis}
-[1] Handbuch Basys 3:
+[1] Handbuch Basys 3 \\
 \url{https://reference.digilentinc.com/_media/reference/programmable-logic/basys-3/basys3_rm.pdf}     05.07.2018 13:55
+
+[2] Field Programmable Gate Array \\
+\url{https://de.wikipedia.org/wiki/Field_Programmable_Gate_Array} 05.07.2018 15:09
 
 \end{document}
